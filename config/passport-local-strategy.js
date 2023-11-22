@@ -6,7 +6,7 @@ passport.use(new LocalStrategy({
     usernameField: 'email',
     passReqToCallback: true // ! To pass the request to the callback function
     },
-    function(email, password, done) {
+    function(req,email, password, done) {
         // Find a user and establish the identity
         // If not found or password is wrong then return done(null, false)
         // If found then return done(null, user)
@@ -48,20 +48,23 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-// passport.checkAuthentication = (req,res,next)=>{
-//     // ! IF the user is signed in, then pass on the request to the next function(controller's action)
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     return res.redirect('/users/login');
-// }
+passport.checkAuthentication = (req,res,next)=>{
+    // ! IF the user is signed in, then pass on the request to the next function(controller's action)
+    if (req.isAuthenticated()){
+        return next();
+    }
 
-// passport.setAuthenticatedUser = (req,res,next)=>{
-//     if(req.isAuthenticated()){
-//         // req.user contains the current signed in user from the session cookies and it just contains the user for views. 
-//         res.locals.user = req.user;
-//     }
-//     next();
-// }
+    // if the user is not signed in
+    return res.redirect('/users/sign-in');
+}
+
+passport.setAuthenticatedUser = (req,res,next)=>{
+    if (req.isAuthenticated()){
+        // req.user contains the current signed in user from the session cookie and we are just sending this to the locals for the views
+        res.locals.user = req.user;
+    }
+
+    next();
+}
 
 module.exports = passport;

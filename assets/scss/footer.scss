@@ -1,0 +1,22 @@
+#layout-footer{
+    color: white;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+
+    background: grey;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70%;
+    
+    
+
+    .footer-nav{
+        
+        ul{
+            list-style: none;
+        }
+    }
+}

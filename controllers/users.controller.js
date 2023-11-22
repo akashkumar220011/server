@@ -1,39 +1,26 @@
 const User = require('../models/user')
 module.exports.profile = function(req, res){
-   if(req.cookies.user_id){
-    User.findById(req.cookies.user_id)
-    .then(user => {
-        if(user){
-            return res.render('user_profile',{
-                title: "Wonder Profile",
-                user: user
-            });
-        }else {
-            return res.redirect('/users/sign-in');
-        }
+    return res.render('user_profile', {
+        title: 'User Profile'
     })
-    .catch(err => {
-        console.log('Error in Finding user by Id:', err);
-        return res.redirect('/users/sign-in');
-    });
-   } else {
-        return res.redirect('/users/sign-in');
-   }
 };
 module.exports.signUp = function(req, res){
+    if(req.isAuthenticated()){
+        res.redirect('/users/profile');
+    }
     return res.render('user_signUp', {
         title: 'User Sign up'
     })
 }
 module.exports.signIn = function(req, res){
+    if(req.isAuthenticated()){
+        res.redirect('/users/profile');
+    }
     return res.render('user_sigin', {
         title: ' User Sign In '
     })
 }
-module.exports.signOut = function(req, res){
-    res.clearCookie('user_id');
-    return res.redirect('/users/sign-in');
-}
+
 module.exports.create = function(req, res){
     if (req.body.password !== req.body.confirm_password){
         return res.redirect('back');
@@ -58,22 +45,17 @@ module.exports.create = function(req, res){
 
 module.exports.createSession = function(req, res){
     //Todo later
-    User.findOne({email: req.body.email})
-    .then(user => {
-        if(!user){
-            return res.redirect("back");
-        }
-        // handle password which doesn't match
-        if(user.password !== req.body.password){
-            return res.redirect("back");
+    return res.redirect('/');
+}
+module.exports.signOut = function(req, res, callback) {
+    req.logout(function(err) {
+        if (err) {
+            // Handle error, if any
+            console.error('Error during logout:', err);
+            return callback(err);
         }
 
-        // handle session creation
-        res.cookie('user_id', user.id);
-        return res.redirect('/users/profile');
-    })
-    .catch(error => {
-        console.log('Error in finding user in signing in:', err)
-        return res.redirect('back');
+        // Redirect after successful logout
+        return callback(null, res.redirect('/'));
     });
-}
+};
