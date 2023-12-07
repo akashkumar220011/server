@@ -10,14 +10,15 @@
         <div class="auth-links">
             <ul>
                 <% if (locals.user){ %>
-                    <li><a href="/users/profile"><%= user.name %></a></li>
+                    <li><a href="/users/profile"><%= user.name %></a> &nbsp;</li>
+                
                     <li>
                         <a href="/users/sign-out"> Sign-Out</a>
                     </li>
 
                     <%}else {%>
                         <li>
-                            <a href="/users/sign-in">sign-in</a>
+                            <a href="/users/sign-in">sign-in</a> &nbsp;
                         </li>
                         <li>
                             <a href="/users/Sign-up">Sign-Up</a>

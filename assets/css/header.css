@@ -2,9 +2,15 @@
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
-  background: #2196f3;
-  color: white;
-  box-shadow: 1px 1px 1px 1px lightgrey;
+  background: rgba(144, 35, 35, 0.1);
+  /* Glass-like transparent background */
+  color: #eda9a9;
+  backdrop-filter: blur(10px);
+  /* Frosted glass effect */
+  border-radius: 10px;
+  /* Optional: Add some border-radius for a smoother look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for separation from the background */
 }
 
 #layout-header nav .mini-logo p {
@@ -23,6 +29,6 @@
 }
 
 #layout-header nav a {
-  color: white;
+  color: #170d0d;
   text-decoration: none;
 }

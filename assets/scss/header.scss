@@ -1,35 +1,37 @@
-#layout-header{
-    nav{
-        display: flex;
-        justify-content: space-between;
-        padding: 0 10px;
-        background: #2196f3;
-        color: white;
-        box-shadow: 1px 1px 1px 1px lightgrey;
-
-        .mini-logo{
-            p{
-                margin: 5px;
-                font-size: 1.4rem;
-                font-weight: bold;
-            }
+#layout-header {
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      background: rgba(144, 35, 35, 0.1); /* Glass-like transparent background */
+      color: rgb(237, 169, 169);
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      border-radius: 10px; /* Optional: Add some border-radius for a smoother look */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation from the background */
+  
+      .mini-logo {
+        p {
+          margin: 5px;
+          font-size: 1.4rem;
+          font-weight: bold;
         }
-
-        .auth-links{
-            ul{
-                margin: 5% 5px;
-                display: flex;
-
-                li{
-                    margin-right: 10px;
-                }
-            }
+      }
+  
+      .auth-links {
+        ul {
+          margin: 5% 5px;
+          display: flex;
+  
+          li {
+            margin-right: 10px;
+          }
         }
-
-        a{
-            color: white;
-            text-decoration: none;
-        }
-
+      }
+  
+      a {
+        color: rgb(23, 13, 13);
+        text-decoration: none;
+      }
     }
-}
+  }
+  
